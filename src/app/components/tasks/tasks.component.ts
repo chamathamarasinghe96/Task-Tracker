@@ -7,11 +7,11 @@ import { TaskService } from '../../services/task.service';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent implements OnInit { 
   tasks: Task[] = [];
 
   constructor(private taskService: TaskService) { }
-
+  
   ngOnInit(): void {
     this.taskService.getTasks().subscribe((TASKS) => {
       this.tasks = TASKS;

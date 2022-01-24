@@ -1,11 +1,11 @@
-<form class="add-form">
+<form class="add-form" (ngSubmit)="onSubmit()">
   <div class="form-control">
     <label for="task">Task</label>
     <input
       type="text"
-      name="task"
-      [(ngModel)]="task"
-      id="task"
+      name="text"
+      [(ngModel)]="text"
+      id="text"
       placeholder="Add Task"
     />
   </div>

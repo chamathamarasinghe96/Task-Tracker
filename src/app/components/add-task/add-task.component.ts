@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Task } from '../../Task';
 
 @Component({
   selector: 'app-add-task',
@@ -6,11 +7,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-task.component.css'],
 })
 export class AddTaskComponent implements OnInit {
-  task!: String;
-  day!: String;
+  text!: string;
+  day!: string;
   reminder: boolean = false;
+
+  @Output() onAddNewTask: EventEmitter<Task> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  onSubmit() {
+    if (!this.text) {
+      alert('Please add a task!');
+      return;
+    }
+
+    const newTask = {
+      text: this.text,
+      day: this.day,
+      reminder: this.reminder,
+    };
+
+    this.onAddNewTask.emit(newTask);
+
+    this.text = '';
+    this.day = '';
+    this.reminder = false;
+  }
 }

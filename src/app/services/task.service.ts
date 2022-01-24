@@ -30,4 +30,12 @@ export class TaskService {
       },
     });
   }
+
+  addNewTask(task: Task): Observable<Task> {
+    return this.http.post<Task>(this.apiURL, task, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Task } from '../Task';
 // import { TASKS } from '../mock-tasks';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -20,5 +20,14 @@ export class TaskService {
     const url = `${this.apiURL}/${task.id}`;
     // console.log(url);
     return this.http.delete<Task>(url);
+  }
+
+  updateTaskReminder(task: Task): Observable<Task> {
+    const url = `${this.apiURL}/${task.id}`;
+    return this.http.put<Task>(url, task, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 }
